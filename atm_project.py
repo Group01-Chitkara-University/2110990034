@@ -26,6 +26,10 @@ def start():
     elif choice == "q":
         exit(0)
 
+'''
+    Request balance function:
+        1. displays the balacne of the user specified and then after 1 second the program exits to the main menu
+'''
 
 def reqBal(username):
     print("\nDear, ",username, " you have $", balance[userArray.index(username)], " in your account")
