@@ -25,3 +25,14 @@ def start():
         createAccount()
     elif choice == "q":
         exit(0)
+
+
+def reqBal(username):
+    print("\nDear, ",username, " you have $", balance[userArray.index(username)], " in your account")
+    sleep(1)
+    printMainMenu(username)
+
+# MAIN PROGRAM STARTS HERE
+
+print("\nWelcome to the ATM Project\n")
+start()     # Calling the start function
