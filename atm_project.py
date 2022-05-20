@@ -25,6 +25,35 @@ def start():
         createAccount()
     elif choice == "q":
         exit(0)
+
+'''
+    Login function:
+        1. first checks if their are any previous accounts created on the device [true everytime the program is rerun][database not connected]
+        2. if above condition is false then moves on and asks the user for input of username ans validates it in the above stored array
+        3. if it evaluates to true then asks the user for password else alerts the user to register as no such account exists
+        3. then matches the password of the current user and if all is well then displays the message of login successful
+        4. at last it calls the main menu function which has extended functionality about the user actions
+'''
+
+def login():
+    global user, paswd
+    if (len(userArray) == 0 and len(passArray) == 0):
+        print("\nCurrently we have no accounts! Please register first!!")
+        start()
+    else:
+        user = input("\n\nEnter your username: ")
+        if(not(user in userArray)):
+            print("\nNo such user exists! Please register first!!")
+            start()
+        else:
+            paswd = input("\nEnter your password: ")
+            if(paswd == passArray[userArray.index(user)]):
+                print("\n***LOGIN SUCCESSFUL*")
+                printMainMenu(user)
+            else:
+                print("\nWRONG PASSWORD! Please start again")
+                start()
+
 '''
     Create account function:
         1. asks the user for their username and password
