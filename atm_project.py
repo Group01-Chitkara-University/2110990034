@@ -25,49 +25,49 @@ def start():
         createAccount()
     elif choice == "q":
         exit(0)
-
 '''
-    Deposit function: 
-        1. asks the user for amount to be entered and then increments the balance at the same index that the username has to avoid redundancy
-        2. after that displays the message of transaaction successful
-        3. sleep function here halts the processing of the program for 1 second here
-'''
-    
-def deposit(username):
-    bal = int(input("\nEnter the amount to be deopited: $"))
-    balance[userArray.index(username)] += bal
-    sleep(1)
-    print("\nTRANSACTION SUCCESSFUL")
-    sleep(1)
-    printMainMenu(username)
-
-'''
-    Withdraw function:
-        1. first check if the user has 0 balance. if it is true then alerts the user of the 0 balance and tells them to deposit some money first
-        2. if it is false then asks the user to enter the amount to be withdrawn and checks wether it is greater than the balance of user or not
-        3. if it is greater than the balance then shows an error and goes to main menu and user has to again use the functionality
-        4. if it is smaller then the transaction is successful and user is directed to main menu after 1 second
+    Create account function:
+        1. asks the user for their username and password
+        2. then stores it in the user array and password array
 '''
 
-def withdraw(username):
-    if(balance[userArray.index(username)] == 0):
-        print("\nYou have 0 balance! Please deposit some money first.")
+def createAccount():
+    user = input("\nPlease enter your User Name: ")
+    paswd = input("\nPlease enter a Password: ")
+
+    userArray.append(user)
+    passArray.append(paswd)
+
+    start()
+
+'''
+    Main menu function:
+        1. greets the user and asks them for their choice on different actions available like deposit, withdraw, request balance.
+        2. if the user enters wrong input more than 2 times then the program quits and goes to the starting stage
+        3. after the user enters a valid choice it validates it and calls a function accordingly
+'''
+
+def printMainMenu(username):
+    print("\nWelcome, ",username,"! Please choose from below")
+    i = 0
+    choice = ''
+    while choice != 'd' and choice != 'w' and choice != 'r' and choice !='q':
+        choice = input("\n\td -> deposit money\n\tw -> withdraw money\n\tr -> request balance\n\tq -> quit\n\n> ")
+        if i == 2:
+            print("\nInvalid input received too many times exiting ....")
+            sleep(2)
+            start()
+
+    if choice == 'd':
+        deposit(username)
+    elif choice == 'w':
+        withdraw(username)
+    elif choice == 'r':
+        reqBal(username)
+    elif choice == 'q':
+        print("\nThank you, ",username, "! Program exiting ......")
         sleep(1)
-        printMainMenu(username)
-    else:
-        withMoney = int(input("\nEnter the amount to be withdrawn: $"))
-        if(withMoney > balance[userArray.index(username)]):
-                print("\nInsufficient balance in your account! Please try again!!")
-                sleep(1)
-                printMainMenu(username)
-        else:
-            balance[userArray.index(username)] -= withMoney
-            sleep(1)
-            print("\nTRANSACTION SUCCESSFUL")
-            sleep(1)
-            printMainMenu(username)
-
-
+        start()
 '''
     Request balance function:
         1. displays the balacne of the user specified and then after 1 second the program exits to the main menu
