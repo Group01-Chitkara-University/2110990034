@@ -3,7 +3,9 @@ from time import sleep          # importing sleep function that halts the execut
 userArray = []                  # initialized empty user and password arrays
 passArray = []
 balance = [0] * 99              # initialized an 0 array
-
+'''
+    This function greets the user and lets the user to start the program and continue.
+'''
 '''
     Start function:
         1. asks the user for a specified input and can execute itself again 4 times if the user enters wrong inputs and then exits.
